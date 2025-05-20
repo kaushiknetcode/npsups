@@ -1,5 +1,5 @@
 // Import pay matrix functions
-import { payMatrix, getBasicPay, getIndicesForLevel, applyCPC } from './data/pay-matrix-7th-cpc.js';
+import { payMatrix, getBasicPay, getIndicesForLevel, applyCPC } from '/data/pay-matrix-7th-cpc.js';
 
 // Define pay levels (1-18 as per 7th CPC)
 const payLevels = Array.from({ length: 18 }, (_, i) => i + 1);

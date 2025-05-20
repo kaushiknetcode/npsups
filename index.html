@@ -271,10 +271,9 @@
     </script>
     
     <script type="module">
-        // This script will only run in browsers that support ES modules
-        import { init } from './script.js';
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
+    import { init } from '/script.js';
+    document.addEventListener('DOMContentLoaded', init);
+</script>
     <!-- Fallback for browsers that don't support modules -->
     <script nomodule>
         alert('This application requires a modern browser that supports JavaScript modules. Please use a recent version of Chrome, Firefox, Safari, or Edge.');
