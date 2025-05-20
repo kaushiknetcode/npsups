@@ -7,8 +7,12 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-BRGRMQ8SY7');
+        gtag('config', 'G-BRGRMQ8SY7', {
+            'transport_url': 'https://analytics.google.com',
+            'send_page_view': true
+        });
     </script>
+    <!-- End Google tag (gtag.js) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Government Pension Simulator (NPS vs UPS)</title>
