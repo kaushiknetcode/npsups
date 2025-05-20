@@ -209,24 +209,51 @@
         </div>
     </div>
     
-    <!-- Visitor Counter -->
-<div style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; display: flex; align-items: center; z-index: 1000;">
-    <span>👥 Total Visits: </span>
-    <span id="visitorCount" style="font-weight: bold; margin-left: 5px">1</span>
-</div>
+    <!-- New Visitor Counter -->
+    <div style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; display: flex; align-items: center; z-index: 1000;">
+        <span>👥 Live Visitors: </span>
+        <span id="visitorCount" style="font-weight: bold; margin-left: 5px">0</span>
+    </div>
 
-<!-- Cloudflare Web Analytics -->
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b06f686d345d4fe08eddf1f2c5a1c71d"}'></script>
-<!-- End Cloudflare Web Analytics -->
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b06f686d345d4fe08eddf1f2c5a1c71d"}'></script>
+    <!-- End Cloudflare Web Analytics -->
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const counterElement = document.getElementById('visitorCount');
-    // Start with current count and add 1 for this visit
-    const currentCount = parseInt(counterElement.textContent) || 0;
-    counterElement.textContent = (currentCount + 1).toString();
-});
-</script>
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getDatabase, ref, onValue, set, increment } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAiq8c-IiaztVxRVNj9BF7ikPg1BmGT9kY",
+            authDomain: "nps-ups-calculator.firebaseapp.com",
+            projectId: "nps-ups-calculator",
+            storageBucket: "nps-ups-calculator.firebasestorage.app",
+            messagingSenderId: "898373245001",
+            appId: "1:898373245001:web:c36bea84a34f9ea1dac798",
+            databaseURL: "https://nps-ups-calculator-default-rtdb.asia-southeast1.firebasedatabase.app"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const visitorRef = ref(db, 'visitors');
+
+        // Update visitor count
+        function updateVisitorCount() {
+            const countRef = ref(db, 'count');
+            set(countRef, increment(1));
+        }
+
+        // Listen for count changes
+        onValue(ref(db, 'count'), (snapshot) => {
+            const count = snapshot.val() || 0;
+            document.getElementById('visitorCount').textContent = count;
+        });
+
+        // Update count when page loads
+        updateVisitorCount();
+    </script>
     
     <script>
         // Handle the loading animation
@@ -260,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <script type="module">
     import { init } from '/script.js';
     document.addEventListener('DOMContentLoaded', init);
-</script>
+    </script>
     <!-- Fallback for browsers that don't support modules -->
     <script nomodule>
         alert('This application requires a modern browser that supports JavaScript modules. Please use a recent version of Chrome, Firefox, Safari, or Edge.');
