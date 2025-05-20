@@ -1,3 +1,4 @@
+# Cloudflare headers for security and caching
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
@@ -5,12 +6,3 @@
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Cache-Control: public, max-age=14400
   Access-Control-Allow-Origin: *
-
-/*.js
-  Content-Type: text/javascript
-
-/*.mjs
-  Content-Type: text/javascript
-
-/*.css
-  Content-Type: text/css
