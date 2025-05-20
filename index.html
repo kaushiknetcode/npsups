@@ -208,28 +208,21 @@
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
             data-cf-beacon='{"token": "YOUR_CF_BEACON_TOKEN"}'>
     </script>
-    <!-- End Cloudflare Web Analytics -->
     
     <script>
         // Simple visitor counter that shows a realistic number
-        // The actual analytics are handled by Cloudflare
         document.addEventListener('DOMContentLoaded', () => {
             const counterElement = document.getElementById('visitorCount');
             if (!counterElement) return;
             
-            // Start with a base number that looks realistic
             const baseCount = 1234;
-            
-            // Add a small random increment to make it look dynamic
             const randomIncrement = Math.floor(Math.random() * 50);
             const totalCount = baseCount + randomIncrement;
             
-            // Format with comma as thousand separator
             counterElement.textContent = totalCount.toLocaleString() + '+';
             
-            // Optional: Animate the counter
             let current = 0;
-            const increment = totalCount / 50; // Adjust speed of counting
+            const increment = totalCount / 50;
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= totalCount) {
@@ -248,19 +241,15 @@
             const loaderOverlay = document.getElementById('loaderOverlay');
             const loaderContent = document.getElementById('loaderContent');
             
-            // Show the container after a short delay to allow initial render
             setTimeout(() => {
                 container.style.opacity = '1';
                 
-                // Start hiding the loader after the progress bar finishes (2.5s)
                 setTimeout(() => {
                     loaderContent.classList.add('hidden');
                     
-                    // Hide the overlay after the content fades out
                     setTimeout(() => {
                         loaderOverlay.classList.add('hidden');
                         
-                        // Remove the overlay from the DOM after the transition
                         setTimeout(() => {
                             loaderOverlay.style.display = 'none';
                         }, 500);
@@ -270,11 +259,12 @@
         });
     </script>
     
+    <!-- Main Application Script -->
     <script type="module">
-        // This script will only run in browsers that support ES modules
         import { init } from './script.js';
         document.addEventListener('DOMContentLoaded', init);
     </script>
+    
     <!-- Fallback for browsers that don't support modules -->
     <script nomodule>
         alert('This application requires a modern browser that supports JavaScript modules. Please use a recent version of Chrome, Firefox, Safari, or Edge.');
