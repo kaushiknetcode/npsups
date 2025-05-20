@@ -1,5 +1,5 @@
 // Test script to verify payLevels array
-import { payLevels, getIndicesForLevel, getBasicPay } from './data/pay-matrix-7th-cpc.js';
+import { payLevels, getIndicesForLevel, getBasicPay } from '/data/pay-matrix-7th-cpc.js';
 
 console.log('Pay Levels:');
 console.log(payLevels);
