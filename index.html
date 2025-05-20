@@ -199,45 +199,23 @@
     </div>
     
     <!-- Visitor Counter -->
-    <div style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; display: flex; align-items: center; z-index: 1000;">
-        <span>👥 Visitors: </span>
-        <span id="visitorCount" style="font-weight: bold; margin-left: 5px;">1,234+</span>
-    </div>
-    
-    <!-- Cloudflare Web Analytics -->
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b06f686d345d4fe08eddf1f2c5a1c71d"}'></script><!-- End Cloudflare Web Analytics -->
-    <!-- End Cloudflare Web Analytics -->
-    
-    <script>
-        // Simple visitor counter that shows a realistic number
-        // The actual analytics are handled by Cloudflare
-        document.addEventListener('DOMContentLoaded', () => {
-            const counterElement = document.getElementById('visitorCount');
-            if (!counterElement) return;
-            
-            // Start with a base number that looks realistic
-            const baseCount = 1234;
-            
-            // Add a small random increment to make it look dynamic
-            const randomIncrement = Math.floor(Math.random() * 50);
-            const totalCount = baseCount + randomIncrement;
-            
-            // Format with comma as thousand separator
-            counterElement.textContent = totalCount.toLocaleString() + '+';
-            
-            // Optional: Animate the counter
-            let current = 0;
-            const increment = totalCount / 50; // Adjust speed of counting
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= totalCount) {
-                    clearInterval(timer);
-                    current = totalCount;
-                }
-                counterElement.textContent = Math.floor(current).toLocaleString() + '+';
-            }, 30);
-        });
-    </script>
+<div style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; display: flex; align-items: center; z-index: 1000;">
+    <span>👥 Total Visits: </span>
+    <span id="visitorCount" style="font-weight: bold; margin-left: 5px">1</span>
+</div>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b06f686d345d4fe08eddf1f2c5a1c71d"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const counterElement = document.getElementById('visitorCount');
+    // Start with current count and add 1 for this visit
+    const currentCount = parseInt(counterElement.textContent) || 0;
+    counterElement.textContent = (currentCount + 1).toString();
+});
+</script>
     
     <script>
         // Handle the loading animation
